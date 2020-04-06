@@ -6,13 +6,23 @@ import ViewSection from './ViewSection';
 import CodeSection from './CodeSection';
 
 function App() {
-  const [bg, setBg] = useState("#000");
+  const [styles, setStyles] = useState({
+    "background-color": "#007DFF",
+    "color": "#fff",
+    "border-width": "2px",
+    "border-color": "#007DFF",
+    "border-radius": "8px",
+    "font-size": "18px",
+    "font-weight": "700",
+    "padding": "15px",
+    "cursor": "pointer",
+  });
   return (
     <div className="App">
       <Layout>
-        <OptionSection />
-        <ViewSection bg={bg} />
-        <CodeSection />
+        <OptionSection styles={styles} setStyles={setStyles} />
+        <ViewSection styles={styles} />
+        <CodeSection styles={styles} />
       </Layout>
     </div>
   );
