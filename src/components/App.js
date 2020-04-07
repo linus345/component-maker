@@ -4,19 +4,18 @@ import Layout from './Layout';
 import OptionSection from './OptionSection';
 import ViewSection from './ViewSection';
 import CodeSection from './CodeSection';
+import { 
+  defaultStyles,
+  defaultHoverStyles,
+  defaultActiveStyles
+} from '../defaultStyles';
 
 function App() {
-  const [styles, setStyles] = useState({
-    "background-color": "#007DFF",
-    "color": "#fff",
-    "border-width": "2px",
-    "border-color": "#007DFF",
-    "border-radius": "8px",
-    "font-size": "18px",
-    "font-weight": "700",
-    "padding": "15px",
-    "cursor": "pointer",
-  });
+  const [selectedTab, setSelectedTab] = useState("result");
+  const [styles, setStyles] = useState(defaultStyles);
+  const [hoverStyles, setHoverStyles] = useState(defaultHoverStyles);
+  const [activeStyles, setActiveStyles] = useState(defaultActiveStyles);
+
   return (
     <div className="App">
       <Layout>
