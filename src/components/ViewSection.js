@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 function ViewSection(props) {
   return (
@@ -16,10 +16,22 @@ const StyledViewSection = styled.div`
   align-items: center;
   background-color: #000;
   color: #fff;
+  padding: 60px 0;
 `;
 
 const StyledButton = styled.button`
   ${({ styles }) => styles}
+
+  // if result is true all styles should be applied (hover and active)
+  ${({ result, hoverStyles, activeStyles }) => result && css`
+    &:hover {
+      ${() => hoverStyles}
+    }
+
+    &:active {
+      ${() => activeStyles}
+    }
+  `}
 `;
 
 export default ViewSection;

@@ -16,9 +16,16 @@ function stylesToCSS(styles) {
     .replace(/,/g, ";");
 }
 
-function CodeSection({ styles }) {
+function CodeSection({ styles, selectedTab, result, allStyles = null }) {
   const codeRef = useRef(null);
-  const hlCode = stylesToCSS(styles);
+  let hlCode;
+  let selector;
+  if(!allStyles) {
+    hlCode = stylesToCSS(styles);
+    selector = `button${selectedTab !== "default" && !result ? (
+      ":"+selectedTab
+    ) : ""}`
+  }
 
   useEffect(() => {
     hljs.registerLanguage('css', css);
@@ -28,18 +35,35 @@ function CodeSection({ styles }) {
     if(codeRef && codeRef.current) {
       hljs.highlightBlock(codeRef.current);
     }
-  }, [codeRef, styles]);
+  }, [codeRef, styles, selector]);
 
   return (
     <StyledCodeSection>
       <div className="code-box">
-        <pre>
-          <code
-            ref={codeRef}
-            className="css"
-          >
-            {`button ${hlCode}`}
-          </code>
+        <pre
+          ref={codeRef}
+        >
+          {!allStyles ? (
+            <code
+              className="css"
+            >
+              {`${selector} ${hlCode}`}
+            </code>
+          ) : (
+            <>
+              {allStyles.map(({ styles, pseudo }) => {
+                const hlCode = stylesToCSS(styles);
+                return (
+                  <code
+                    key={`1${pseudo}`}
+                    className="css"
+                  >
+                    {`button${pseudo} ${hlCode}\n\n`}
+                  </code>
+                );
+              })}
+            </>
+          )}
         </pre>
       </div>
     </StyledCodeSection>
@@ -52,9 +76,15 @@ const StyledCodeSection = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #000;
+  padding: 60px 0;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
 
   .code-box {
     width: 80%;
+    height: 100%;
+    max-height: 100%;
     background-color: #17181b;
     border-radius: 1px;
     box-shadow:
@@ -62,8 +92,10 @@ const StyledCodeSection = styled.div`
       0 0 0 6px #131314,
       0 0 0 9px #035cb9;
     padding: 20px 25px;
+    overflow: scroll;
 
     pre {
+      background-color: #17181b;
       code {
         background-color: #17181b;
       }
