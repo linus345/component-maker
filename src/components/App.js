@@ -12,7 +12,7 @@ import { 
 } from '../defaultStyles';
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState("result");
+  const [selectedTab, setSelectedTab] = useState("default");
   const [styles, setStyles] = useState(defaultStyles);
   const [hoverStyles, setHoverStyles] = useState(defaultHoverStyles);
   const [activeStyles, setActiveStyles] = useState(defaultActiveStyles);
