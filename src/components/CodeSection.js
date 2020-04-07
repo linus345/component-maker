@@ -1,31 +1,26 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import hljs from 'highlight.js/lib/highlight';
 import 'highlight.js/styles/rainbow.css';
 import css from 'highlight.js/lib/languages/css';
 
-function stylesToCSS(styles) {
+function formatStyles(styles, selectedTab) {
   const copy = Object.assign({}, styles);
   // format border property
   const border = `${copy["border-width"]} solid ${copy["border-color"]}`;
   copy["border"] = border;
   delete copy["border-width"];
   delete copy["border-color"];
-  return JSON.stringify(copy, null, 2)
+  // format pseudo element
+  const pseudo = selectedTab === "default" ? "" : `:${selectedTab}`;
+  return `button${pseudo} ${JSON.stringify(copy, null, 2)
     .replace(/"/g, "")
-    .replace(/,/g, ";");
+    .replace(/,/g, ";")}\n\n`
 }
 
-function CodeSection({ styles, selectedTab, result, allStyles = null }) {
+function CodeSection({ styles, selectedTab, allStyles = null }) {
+  const [isCopied, setIsCopied] = useState("copy");
   const codeRef = useRef(null);
-  let hlCode;
-  let selector;
-  if(!allStyles) {
-    hlCode = stylesToCSS(styles);
-    selector = `button${selectedTab !== "default" && !result ? (
-      ":"+selectedTab
-    ) : ""}`
-  }
 
   useEffect(() => {
     hljs.registerLanguage('css', css);
@@ -35,35 +30,40 @@ function CodeSection({ styles, selectedTab, result, allStyles = null }) {
     if(codeRef && codeRef.current) {
       hljs.highlightBlock(codeRef.current);
     }
-  }, [codeRef, styles, selector]);
+    setIsCopied("copy");
+  }, [codeRef, styles, selectedTab]);
 
   return (
     <StyledCodeSection>
       <div className="code-box">
-        <pre
-          ref={codeRef}
-        >
-          {!allStyles ? (
-            <code
-              className="css"
-            >
-              {`${selector} ${hlCode}`}
-            </code>
-          ) : (
-            <>
-              {allStyles.map(({ styles, pseudo }) => {
-                const hlCode = stylesToCSS(styles);
-                return (
-                  <code
-                    key={`1${pseudo}`}
-                    className="css"
-                  >
-                    {`button${pseudo} ${hlCode}\n\n`}
-                  </code>
-                );
-              })}
-            </>
-          )}
+        {navigator.clipboard && (
+          <button
+            className="copy"
+            onClick={async () => {
+              try {
+                navigator.clipboard.writeText(codeRef.current.innerText);
+                setIsCopied("copied");
+              } catch (e) {
+                setIsCopied("failed");
+              }
+            }}
+          >
+            {isCopied}
+          </button>
+        )}
+        <pre>
+          <code
+            ref={codeRef}
+            className="css"
+          >
+            {allStyles ? (
+              allStyles.map(styles => (
+                formatStyles(styles.styles, styles.pseudo)
+              ))
+            ) : (
+              formatStyles(styles, selectedTab)
+            )}
+          </code>
         </pre>
       </div>
     </StyledCodeSection>
@@ -82,6 +82,8 @@ const StyledCodeSection = styled.div`
   overflow: hidden;
 
   .code-box {
+    display: flex;
+    flex-direction: column;
     width: 80%;
     height: 100%;
     max-height: 100%;
@@ -93,6 +95,19 @@ const StyledCodeSection = styled.div`
       0 0 0 9px #035cb9;
     padding: 20px 25px;
     overflow: scroll;
+
+    button.copy {
+      align-self: flex-end;
+      background-color: #000;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      padding: 5px 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 4px;
+    }
 
     pre {
       background-color: #17181b;

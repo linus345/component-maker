@@ -55,19 +55,18 @@ function App() {
             <CodeSection
               styles={styles}
               selectedTab={selectedTab}
-              result={1}
               allStyles={[
                 {
                   styles: styles,
-                  pseudo: "",
+                  pseudo: "default",
                 },
                 {
                   styles: hoverStyles,
-                  pseudo: ":hover",
+                  pseudo: "hover",
                 },
                 {
                   styles: activeStyles,
-                  pseudo: ":active",
+                  pseudo: "active",
                 },
               ]}
             />
