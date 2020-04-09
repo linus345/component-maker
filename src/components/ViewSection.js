@@ -23,9 +23,13 @@ const StyledButton = styled.button`
   ${({ styles }) => styles}
 
   // if result is true all styles should be applied (hover and active)
-  ${({ result, hoverStyles, activeStyles }) => result && css`
+  ${({ result, hoverStyles, focusStyles, activeStyles }) => result && css`
     &:hover {
       ${() => hoverStyles}
+    }
+
+    &:focus {
+      ${() => focusStyles}
     }
 
     &:active {

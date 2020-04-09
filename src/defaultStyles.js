@@ -23,6 +23,18 @@ export const defaultHoverStyles = {
   "cursor": "pointer",
 };
 
+export const defaultFocusStyles = {
+  "background-color": "#0E345A",
+  "color": "#fff",
+  "border-width": "2px",
+  "border-color": "#005CDD",
+  "border-radius": "8px",
+  "font-size": "18px",
+  "font-weight": "700",
+  "padding": "15px",
+  "cursor": "pointer",
+};
+
 export const defaultActiveStyles = {
   "background-color": "#005CDD",
   "color": "#fff",
