@@ -4,7 +4,7 @@ import hljs from 'highlight.js/lib/highlight';
 import 'highlight.js/styles/rainbow.css';
 import css from 'highlight.js/lib/languages/css';
 
-function formatStyles(styles, selectedTab) {
+function formatStyles(styles, selectedTab, buttonClass) {
   const copy = Object.assign({}, styles);
   // format border property
   const border = `${copy["border-width"]} solid ${copy["border-color"]}`;
@@ -12,13 +12,16 @@ function formatStyles(styles, selectedTab) {
   delete copy["border-width"];
   delete copy["border-color"];
   // format pseudo element
+  const selector = buttonClass ? `.${buttonClass}` : "button";
   const pseudo = selectedTab === "default" ? "" : `:${selectedTab}`;
-  return `button${pseudo} ${JSON.stringify(copy, null, 2)
+  return (
+    `${selector}${pseudo} ${JSON.stringify(copy, null, 2)
     .replace(/"/g, "")
-    .replace(/,/g, ";")}\n\n`
+    .replace(/,$/gm, ";")}\n\n`
+  )
 }
 
-function CodeSection({ styles, selectedTab, allStyles = null }) {
+function CodeSection({ styles, selectedTab, allStyles = null, buttonClass }) {
   const [isCopied, setIsCopied] = useState("copy");
   const codeRef = useRef(null);
 
@@ -31,7 +34,7 @@ function CodeSection({ styles, selectedTab, allStyles = null }) {
       hljs.highlightBlock(codeRef.current);
     }
     setIsCopied("copy");
-  }, [codeRef, styles, selectedTab]);
+  }, [codeRef, styles, selectedTab, buttonClass]);
 
   return (
     <StyledCodeSection>
@@ -58,10 +61,10 @@ function CodeSection({ styles, selectedTab, allStyles = null }) {
           >
             {allStyles ? (
               allStyles.map(styles => (
-                formatStyles(styles.styles, styles.pseudo)
+                formatStyles(styles.styles, styles.pseudo, buttonClass)
               ))
             ) : (
-              formatStyles(styles, selectedTab)
+              formatStyles(styles, selectedTab, buttonClass)
             )}
           </code>
         </pre>

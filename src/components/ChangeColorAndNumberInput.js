@@ -26,16 +26,19 @@ function ChangeColorAndNumberInput({
   return (
     <StyledChangeColorAndNumberInput>
       <ColorBox
-        ref={buttonRef}
         onClick={() => setPickerIsOpen(true)}
         color={styles[currColorStyle]}
       />
       {pickerIsOpen && (
-        <ColorPicker
-          styles={styles}
-          setStyles={setStyles}
-          currStyle={currColorStyle}
-        />
+        <div
+          ref={buttonRef}
+        >
+          <ColorPicker
+            styles={styles}
+            setStyles={setStyles}
+            currStyle={currColorStyle}
+          />
+        </div>
       )}
       <ChangeNumberInput
         label={label}
