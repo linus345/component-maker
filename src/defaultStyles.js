@@ -1,6 +1,6 @@
 export const defaultStyles = {
-  "background-color": "#000000",
-  "color": "#007DFF",
+  "background-color": "rgba(0, 0, 0, 0)",
+  "color": "rgba(0, 125, 255, 1)",
   "border-width": "2px",
   "border-color": "#007DFF",
   "border-radius": "8px",
@@ -12,10 +12,10 @@ export const defaultStyles = {
 };
 
 export const defaultHoverStyles = {
-  "background-color": "#007DFF",
-  "color": "#fff",
+  "background-color": "rgba(0, 125, 255, 1)",
+  "color": "rgba(255, 255, 255, 1)",
   "border-width": "2px",
-  "border-color": "#007DFF",
+  "border-color": "rgba(0, 125, 255, 1)",
   "border-radius": "8px",
   "font-size": "18px",
   "font-weight": "700",
@@ -24,10 +24,10 @@ export const defaultHoverStyles = {
 };
 
 export const defaultFocusStyles = {
-  "background-color": "#0E345A",
-  "color": "#fff",
+  "background-color": "rgba(25, 111, 197, 0.45)",
+  "color": "rgba(255, 255, 255, 1)",
   "border-width": "2px",
-  "border-color": "#005CDD",
+  "border-color": "rgba(0, 92, 221, 1)",
   "border-radius": "8px",
   "font-size": "18px",
   "font-weight": "700",
@@ -36,10 +36,10 @@ export const defaultFocusStyles = {
 };
 
 export const defaultActiveStyles = {
-  "background-color": "#005CDD",
-  "color": "#fff",
+  "background-color": "rgba(0, 92, 221, 1)",
+  "color": "rgba(255, 255, 255, 1)",
   "border-width": "2px",
-  "border-color": "#005CDD",
+  "border-color": "rgba(0, 92, 221, 1)",
   "border-radius": "8px",
   "font-size": "18px",
   "font-weight": "700",

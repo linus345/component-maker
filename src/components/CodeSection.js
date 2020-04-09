@@ -17,7 +17,7 @@ function formatStyles(styles, selectedTab, buttonClass) {
   return (
     `${selector}${pseudo} ${JSON.stringify(copy, null, 2)
     .replace(/"/g, "")
-    .replace(/,/g, ";")}\n\n`
+    .replace(/,$/g, ";")}\n\n`
   )
 }
 

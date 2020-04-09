@@ -3,17 +3,23 @@ import styled from 'styled-components';
 import { ChromePicker } from 'react-color';
 
 function ColorPicker({ styles, setStyles, currStyle }) {
+  const handleChange = ({ rgb }) => {
+    // format rgb to css format
+    const formattedRgb = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`;
+
+    setStyles(styles => ({
+      ...styles,
+      [currStyle]: formattedRgb,
+    }))
+  }
+
   return (
     <div
       onClick={e => e.stopPropagation()}
     >
       <StyledChromePicker
-        // disableAlpha
         color={styles[currStyle]}
-        onChange={color => setStyles(styles => ({
-          ...styles,
-          [currStyle]: color.hex,
-        }))}
+        onChange={handleChange}
       />
     </div>
   );
