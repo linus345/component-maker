@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 function ViewSection(props) {
   return (
     <StyledViewSection>
-      <StyledButton {...props}>Click me!</StyledButton>
+      <StyledButton {...props}>{props.buttonText}</StyledButton>
     </StyledViewSection>
   );
 }

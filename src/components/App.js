@@ -14,6 +14,8 @@ import { 
 
 function App() {
   const [selectedTab, setSelectedTab] = useState("default");
+  const [buttonText, setButtonText] = useState("Click me!");
+  const [buttonClass, setButtonClass] = useState("");
   const [styles, setStyles] = useState(defaultStyles);
   const [hoverStyles, setHoverStyles] = useState(defaultHoverStyles);
   const [focusStyles, setFocusStyles] = useState(defaultFocusStyles);
@@ -32,12 +34,21 @@ function App() {
             styles={styles}
             setStyles={setStyles}
             selectedTab={selectedTab}
+            buttonText={buttonText}
+            setButtonText={setButtonText}
+            buttonClass={buttonClass}
+            setButtonClass={setButtonClass}
           />
         ) : selectedTab === "hover" ? (
           <Tab
             styles={hoverStyles}
             setStyles={setHoverStyles}
             selectedTab={selectedTab}
+            buttonText={buttonText}
+            setButtonText={setButtonText}
+            buttonClass={buttonClass}
+            setButtonClass={setButtonClass}
+          />
         ) : selectedTab === "focus" ? (
           <Tab
             styles={focusStyles}
@@ -53,6 +64,10 @@ function App() {
             styles={activeStyles}
             setStyles={setActiveStyles}
             selectedTab={selectedTab}
+            buttonText={buttonText}
+            setButtonText={setButtonText}
+            buttonClass={buttonClass}
+            setButtonClass={setButtonClass}
           />
         ) : (
           // result tab
@@ -62,6 +77,7 @@ function App() {
               hoverStyles={hoverStyles}
               focusStyles={focusStyles}
               activeStyles={activeStyles}
+              buttonText={buttonText}
               result={1}
             />
             <CodeSection
@@ -85,6 +101,7 @@ function App() {
                   pseudo: "active",
                 },
               ]}
+              buttonClass={buttonClass}
             />
           </>
         )}

@@ -4,8 +4,16 @@ import styled from 'styled-components';
 import ChangeColorButton from './ChangeColorButton';
 import ChangeNumberInput from './ChangeNumberInput';
 import ChangeColorAndNumberInput from './ChangeColorAndNumberInput';
+import TextInput from './TextInput';
 
-function OptionSection({ styles, setStyles }) {
+function OptionSection({
+  styles,
+  setStyles,
+  buttonText,
+  setButtonText,
+  buttonClass,
+  setButtonClass
+}) {
   return (
     <StyledOptionSection>
       <ChangeColorButton
@@ -54,6 +62,18 @@ function OptionSection({ styles, setStyles }) {
         setStyles={setStyles}
         currStyle="padding"
       />
+      <TextInput
+        label="Button text"
+        placeholder="Text..."
+        value={buttonText}
+        setValue={setButtonText}
+      />
+      <TextInput
+        label="Button class"
+        placeholder="Class..."
+        value={buttonClass}
+        setValue={setButtonClass}
+      />
     </StyledOptionSection>
   );
 }
@@ -63,6 +83,7 @@ const StyledOptionSection = styled.div`
   background-color: #000;
   color: #fff;
   padding: 40px;
+  overflow: scroll;
 `;
 
 export default OptionSection;

@@ -41,6 +41,14 @@ const StyledTabs = styled.div`
       font-size: 18px;
       text-transform: capitalize;
     }
+
+    @media (max-width: 890px) {
+      padding: 10px 12px;
+
+      p {
+        font-size: 15px;
+      }
+    }
   }
 `;
 
