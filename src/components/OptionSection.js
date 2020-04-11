@@ -57,10 +57,28 @@ function OptionSection({
         step="100"
       />
       <ChangeNumberInput
-        label="Padding"
+        label="Padding top"
         styles={styles}
         setStyles={setStyles}
-        currStyle="padding"
+        currStyle="padding-top"
+      />
+      <ChangeNumberInput
+        label="Padding bottom"
+        styles={styles}
+        setStyles={setStyles}
+        currStyle="padding-bottom"
+      />
+      <ChangeNumberInput
+        label="Padding right"
+        styles={styles}
+        setStyles={setStyles}
+        currStyle="padding-right"
+      />
+      <ChangeNumberInput
+        label="Padding left"
+        styles={styles}
+        setStyles={setStyles}
+        currStyle="padding-left"
       />
       <TextInput
         label="Button text"

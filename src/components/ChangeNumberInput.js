@@ -10,6 +10,11 @@ function ChangeNumberInput({
   max = 100,
   step = 1,
 }) {
+  const formatValue = (value, styles) => {
+    const suffix = styles[currStyle].slice(-2) === "px" ? "px" : "";
+    return `${value.replace(/px/g, "")}${suffix}`;
+  }
+
   return (
     <StyledChangeNumberInput>
       <input
@@ -25,11 +30,7 @@ function ChangeNumberInput({
           const { value } = e.target;
           setStyles(styles => ({
             ...styles,
-            [currStyle]: `${value}${styles[currStyle].slice(-2) === "px" ? (
-              "px"
-            ) : (
-              ""
-            )}`,
+            [currStyle]: formatValue(value, styles),
           }));
         }}
       />
@@ -51,6 +52,11 @@ const StyledChangeNumberInput = styled.div`
     font-size: 1.2em;
     text-align: center;
     padding-left: 5px;
+    outline: none;
+
+    &:focus {
+      border: 2px solid #007DFF;
+    }
   }
 
   label {
