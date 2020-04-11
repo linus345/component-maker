@@ -6,7 +6,10 @@ export const defaultStyles = {
   "border-radius": "8px",
   "font-size": "18px",
   "font-weight": "700",
-  "padding": "15px",
+  "padding-top": "15px",
+  "padding-bottom": "15px",
+  "padding-right": "20px",
+  "padding-left": "20px",
   "cursor": "pointer",
   "outline": "none",
 };
@@ -19,8 +22,12 @@ export const defaultHoverStyles = {
   "border-radius": "8px",
   "font-size": "18px",
   "font-weight": "700",
-  "padding": "15px",
+  "padding-top": "15px",
+  "padding-bottom": "15px",
+  "padding-right": "20px",
+  "padding-left": "20px",
   "cursor": "pointer",
+  "outline": "none",
 };
 
 export const defaultFocusStyles = {
@@ -31,8 +38,12 @@ export const defaultFocusStyles = {
   "border-radius": "8px",
   "font-size": "18px",
   "font-weight": "700",
-  "padding": "15px",
+  "padding-top": "15px",
+  "padding-bottom": "15px",
+  "padding-right": "20px",
+  "padding-left": "20px",
   "cursor": "pointer",
+  "outline": "none",
 };
 
 export const defaultActiveStyles = {
@@ -43,6 +54,10 @@ export const defaultActiveStyles = {
   "border-radius": "8px",
   "font-size": "18px",
   "font-weight": "700",
-  "padding": "15px",
+  "padding-top": "15px",
+  "padding-bottom": "15px",
+  "padding-right": "20px",
+  "padding-left": "20px",
   "cursor": "pointer",
+  "outline": "none",
 };
